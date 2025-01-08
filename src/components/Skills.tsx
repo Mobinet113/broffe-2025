@@ -1,5 +1,6 @@
 /** @format */
 
+import GradSpan from "./common/GradSpan";
 import Heading from "./common/Heading";
 
 export default function Skills() {
@@ -13,9 +14,11 @@ export default function Skills() {
                     and technologies. From turning beautiful, rich, XD designs into fully functional websites,
                     to developing dashboards and helpful tools.
                 </p>
-                <p className="mb-10">Here are some technologies I have experience with:</p>
+                <p className="mb-10">
+                    Here are <GradSpan>some technologies</GradSpan> I have experience with:
+                </p>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                     <div className="bg-neutral-800 rounded-lg p-5 text-left">
                         <Heading type="h3">Frontend</Heading>
                         <ul className="list-disc ml-5">

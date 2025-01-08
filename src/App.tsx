@@ -5,6 +5,7 @@ import Intro from "./components/Intro";
 import { useState } from "react";
 import Portfolio from "./components/Portfolio";
 import Skills from "./components/Skills";
+import Contact from "./components/Contact";
 
 function App() {
     const [lockScroll, setLockScroll] = useState(false);
@@ -15,6 +16,7 @@ function App() {
             <Intro />
             <Skills />
             <Portfolio />
+            <Contact />
         </div>
     );
 }

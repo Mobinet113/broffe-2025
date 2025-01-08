@@ -5,18 +5,18 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
+import GradSpan from "./common/GradSpan";
 
 interface HeroProps {
     onAnimationEnd?: () => void;
 }
 
 export default function Hero({ onAnimationEnd }: HeroProps) {
-    gsap.registerPlugin([useGSAP, ScrollTrigger]);
+    gsap.registerPlugin(useGSAP, ScrollTrigger);
 
     const container = useRef<HTMLDivElement>(null);
     const firstLine = useRef<HTMLSpanElement>(null);
     const secondLine = useRef<HTMLSpanElement>(null);
-    const myName = useRef<HTMLSpanElement>(null);
     const scrollHint = useRef<HTMLDivElement>(null);
 
     useGSAP(
@@ -36,28 +36,15 @@ export default function Hero({ onAnimationEnd }: HeroProps) {
                 ease: "power2.out",
             });
 
-            tl.to(myName.current, {
-                color: "pink",
-                duration: 1.5,
-                ease: "power2.out",
-                onComplete: onAnimationEnd,
-            });
-
             tl.to(scrollHint.current, {
                 opacity: 1,
                 duration: 1.5,
                 ease: "power2.out",
             });
 
-            gsap.to(firstLine, {
-                scrollTrigger: {
-                    trigger: container.current,
-                    start: "top top",
-                    end: "bottom top",
-                    markers: true,
-                },
-                x: "300px",
-            });
+            if (onAnimationEnd) {
+                tl.eventCallback("onComplete", onAnimationEnd);
+            }
         },
         { scope: container }
     );
@@ -70,7 +57,10 @@ export default function Hero({ onAnimationEnd }: HeroProps) {
                 </span>
 
                 <span ref={secondLine}>
-                    I'm <span ref={myName}>Ben.</span>
+                    I'm{" "}
+                    <a href="/Benjamin-Roffe.pdf" target="_blank">
+                        <GradSpan>Ben Roffe</GradSpan>
+                    </a>
                 </span>
             </Heading>
 
